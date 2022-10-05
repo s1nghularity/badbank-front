@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import SignUpForm from "./SignUpForm";
-import { useUserContext, } from "./Context";
+import { useUserContext } from "./Context";
 
 
 // TODO: Store submissions either in context or alldata
