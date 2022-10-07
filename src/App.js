@@ -8,6 +8,7 @@ import Deposit from './pages/Deposit';
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import ErrorPage from './pages/Error'
+import { UserProvider } from './pages/Context';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       {/* <AuthProvider> */}
+      <UserProvider>
       <Router>
         <Navi /> 
           <Routes>
@@ -25,7 +27,8 @@ function App() {
             <Route path="*" element= { <ErrorPage/> }     />
           </Routes>
       </Router>
-      <Outlet />    
+      <Outlet />  
+      </UserProvider>  
    </div>
   );
 }

@@ -11,7 +11,8 @@ function CreateAccount() {
 }
 
 function Account() {
-    const { user, setUser } = [useUserContext()];
+    const { user, setUser } = useUserContext();
+    
     function handle(data) {
         console.log("handle from createaccount called");
         setUser([
