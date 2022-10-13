@@ -108,52 +108,56 @@ function SignUpForm({ bgcolor, label, handle, successButton }) {
             <h3> </h3>
           )}
           {show ? (
-            <div className="mb-3">
-              Name
-              <br />
-              <input
-                type="input"
-                className="form-control"
-                id="name"
-                placeholder="Enter Name"
-                value={name}
-                onChange={(e) => {
-                  setName(e.currentTarget.value);
-                  setButtonDisabled(false);
-                  clearError();
-                }}
-              />
-              <div style={{ color: "red" }}>{errors.nameError}</div>
-              Email Address
-              <br />
-              <input
-                type="input"
-                className="form-control"
-                id="email"
-                placeholder="Enter Email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.currentTarget.value);
-                  setButtonDisabled(false);
-                  clearError();
-                }}
-              />
-              <div style={{ color: "red" }}>{errors.emailError}</div>
-              Password <br />
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Enter Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.currentTarget.value);
-                  setButtonDisabled(false);
-                  clearError();
-                }}
-              />
-              <div style={{ color: "red" }}>{errors.passwordError}</div>
-            </div>
+            <form>
+
+              <div className="mb-3">
+                Name
+                <br />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.currentTarget.value);
+                    setButtonDisabled(false);
+                    clearError();
+                  }}
+                />
+                <div style={{ color: "red" }}>{errors.nameError}</div>
+                Email Address
+                <br />
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.currentTarget.value);
+                    setButtonDisabled(false);
+                    clearError();
+                  }}
+                />
+                <div style={{ color: "red" }}>{errors.emailError}</div>
+                Password <br />
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.currentTarget.value);
+                    setButtonDisabled(false);
+                    clearError();
+                  }}
+                />
+                <div style={{ color: "red" }}>{errors.passwordError}</div>
+              </div>
+
+            </form>
           ) : (
             <div>
               <h3>
@@ -193,7 +197,7 @@ function SignUpForm({ bgcolor, label, handle, successButton }) {
               <Button>
                 <NavItem
                   tag={Link}
-                  to="/src/pages/Login"
+                  to="/Login"
                   style={{
                     textDecoration: "none",
                     color: "white",

@@ -3,7 +3,6 @@ import SignUpForm from "./SignUpForm";
 import { useUserContext } from "./Context";
 
 
-// TODO: Store submissions either in context or alldata
 // TODO: Authorize login requests
 
 function CreateAccount() {

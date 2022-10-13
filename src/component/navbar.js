@@ -60,11 +60,11 @@ export default function Navi() {
                             </NavLink>
                         </NavItem> */}
 
-                        {/*<NavItem>
-                            <NavLink tag={Link} to='/alldata'>
+                        <NavItem>
+                            <NavLink tag={Link} to='/AllData'>
                             All Data
                             </NavLink>
-                        </NavItem> */}
+                        </NavItem>
 
                         <NavItem>
                             <NavLink tag={Link} to='/Login'>

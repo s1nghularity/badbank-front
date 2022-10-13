@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom
 import Navi from './component/navbar';
 import HomePage from './pages/HomePage';
 import Deposit from './pages/Deposit';
+import AllData from './pages/AllData'
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import ErrorPage from './pages/Error'
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route index element= { <HomePage /> } />
             <Route path="/Deposit" element={ <Deposit /> } />
+            <Route path="/AllData" element={ <AllData /> } />
             <Route path="/Login" element={<Login />}/>
             <Route path="/CreateAccount" element={ <CreateAccount /> } />
             <Route path="*" element= { <ErrorPage/> }     />
