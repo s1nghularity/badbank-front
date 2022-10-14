@@ -29,7 +29,6 @@ function App() {
             <Route path="*" element= { <ErrorPage/> }     />
           </Routes>
       </Router>
-      <Outlet />  
       </UserProvider>  
    </div>
   );

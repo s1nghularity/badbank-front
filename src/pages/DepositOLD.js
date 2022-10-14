@@ -4,13 +4,16 @@ import { Card, CardHeader, CardBody, } from "reactstrap";
 function Deposit() {
     const [show, setShow]     = React.useState(true);
     const [status, setStatus] = React.useState(' ');
+    const [user, setUser]                   = React.useState('');
+    const [balance, setBalance]             = React.useState('');
+	const [deposit, setDeposit]             = React.useState('');
 
     return(
         <Card
             bgcolor="warning"
             header="Deposit">
-             {/* status={status}
-             body={show ?} */}
+             status={status}
+             {/* body={show ?} */}
             <DepositForm>{setShow}</DepositForm> 
             <DepositMsg>{setShow}</DepositMsg>
         </Card>

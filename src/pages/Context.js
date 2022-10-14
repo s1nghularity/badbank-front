@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
  
   const [user, setUser] = useState([
     { name: "abel", email: "abel@mit.edu", password: "secret", balance: 100 },
-    { name: "Peter", email: "peter@uic.edu", password: "qwerty", balance: 5 },
+    { name: "Erika", email: "erikamal@usc.edu", password: "markiv", balance: 101 },
   ]);
 
   return (
