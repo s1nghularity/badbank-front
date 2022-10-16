@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import SignUpForm from "./SignUpForm";
-import { useUserContext } from "./Context";
+import BankForm from "./bankform";
+import { useUserContext } from "./context";
 
 
 // TODO: Authorize login requests
@@ -11,10 +11,9 @@ function CreateAccount() {
 
 function Account() {
     const { user, setUser } = useUserContext();
-    
+
     function handle(data) {
-        console.log("handle from createaccount called");
-        setUser([
+            setUser([
             ...user,
             {
             name: data.name,
@@ -28,7 +27,7 @@ function Account() {
 
     return (
         <div>
-            <SignUpForm
+            <BankForm
             bgcolor="primary"
             label="Create Account"
             handle={handle}
@@ -38,8 +37,5 @@ function Account() {
         </div>
     );
 }
-
-    
-
 
 export default CreateAccount

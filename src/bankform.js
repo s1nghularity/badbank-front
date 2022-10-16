@@ -47,7 +47,7 @@ function validatePassword(password) {
 
 //SIGN-UP COMPONENT TO BE PASSED TO CREATEACCOUNT 
 
-function SignUpForm({ bgcolor, label, handle, successButton }) {
+function BankForm({ bgcolor, label, handle, successButton }) {
   const [show, setShow] = React.useState(true);
   const [status, setStatus] = React.useState("");
   const [name, setName] = React.useState("");
@@ -215,4 +215,4 @@ function SignUpForm({ bgcolor, label, handle, successButton }) {
   );
 }
 
-export default SignUpForm;
+export default BankForm;

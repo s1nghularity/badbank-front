@@ -1,37 +1,40 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-import Navi from './component/navbar';
-import HomePage from './pages/HomePage';
-import Deposit from './pages/Deposit';
-import AllData from './pages/AllData'
-import Login from './pages/Login';
-import CreateAccount from './pages/CreateAccount';
-import ErrorPage from './pages/Error'
-import { UserProvider } from './pages/Context';
+import NavBar from './navbar';
+import Home from './home';
+import CreateAccount from './createaccount';
+import Login from './login';
+import Deposit from './deposit';
+import Withdraw from './withdraw'
+import Balance from './balance'
+import AllData from './alldata'
+import ErrorPage from './error'
+import { UserProvider } from "./context";
 
 
-function App() {
+export default function App() {
   
   return (
-    <div className="App">
-      {/* <AuthProvider> */}
-      <UserProvider>
+    <div className="App">     
       <Router>
-        <Navi /> 
+      <UserProvider> 
+        <NavBar />
+        
           <Routes>
-            <Route index element= { <HomePage /> } />
-            <Route path="/Deposit" element={ <Deposit /> } />
-            <Route path="/AllData" element={ <AllData /> } />
-            <Route path="/Login" element={<Login />}/>
-            <Route path="/CreateAccount" element={ <CreateAccount /> } />
-            <Route path="*" element= { <ErrorPage/> }     />
+            <Route path = "/"            index element= { <Home /> }       />
+            <Route path ="#/createaccount/"     element= { <CreateAccount /> }  />
+            <Route path ="#/login/"             element= { <Login /> }          />
+            <Route path ="#/deposit/"           element= { <Deposit /> }        />
+            <Route path ="#/withdraw/"          element= { <Withdraw /> }       />
+            <Route path ="#/balance/"           element= { <Balance /> }        />
+            <Route path ="#/alldata/"           element= { <AllData /> }        />
+            <Route path ="*"                   element= { <ErrorPage/> }       />
           </Routes>
+          
+        </UserProvider>
       </Router>
-      </UserProvider>  
-   </div>
+    </div>
   );
 }
-
-export default App;

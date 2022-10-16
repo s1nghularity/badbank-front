@@ -1,21 +1,22 @@
-import React, { useContext } from "react";
-import { useUserContext, UserContext} from "./Context";
-import {Card, CardBody, CardHeader} from 'reactstrap'
+import { useContext } from "react";
+import { useUserContext, UserContext } from "./context";
+import { Card, CardBody, CardHeader, CardTitle} from "reactstrap";
 
 function AllData() {
-  return(
-  <div>
-  <UserAccountData />
-  </div>
+  return (
+    <div>
+      <UserAccountData />
+    </div>
   );
 }
 
 function UserAccountData() {
   const { user, setUser } = useUserContext();
-  const {context} = useContext(UserContext);
+  const context = useContext(UserContext);
 
   return (
-    <div> All Data
+    <div>
+      All User Account Data
       <br/>
         {user.map((ctx, i) => (
             <>
@@ -31,9 +32,7 @@ function UserAccountData() {
             Password:  {ctx.password}
             </CardBody>
             </Card>
-            </>
-            
-          
+            </>        
         ))}
       <br/>
     </div>
