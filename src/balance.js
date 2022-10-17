@@ -1,5 +1,5 @@
 import React from 'react'
-import UserProvider from './context'
+import {UserProvider} from './context'
 
 function Balance(){
   const [show, setShow]     = React.useState(true);

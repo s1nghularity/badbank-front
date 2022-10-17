@@ -1,19 +1,19 @@
 import React from 'react'
-import UserProvider from './context'
+import {UserProvider} from './context'
 
 function Deposit(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');  
 
   return (
-    <UserProvider
+    <UserProvider>
       bgcolor="warning"
       header="Deposit"
       status={status}
       body={show ? 
         <DepositForm setShow={setShow} setStatus={setStatus}/> :
         <DepositMsg setShow={setShow} setStatus={setStatus}/>}
-    />
+    </UserProvider>
   )
 }
 
@@ -36,7 +36,7 @@ function DepositForm(props){
   const [amount, setAmount] = React.useState('');
 
   function handle(){
-    fetch(`/account/update/${email}/${amount}`)
+    fetch(`/account/update/${email}/+${amount}`)
     .then(response => response.text())
     .then(text => {
         try {

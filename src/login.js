@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import UserProvider from './context'
+import {UserProvider} from './context'
 
 function Login(){
   const [show, setShow]     = React.useState(true);

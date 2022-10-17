@@ -1,5 +1,6 @@
 import React from 'react'
-import UserProvider from './context'
+import {UserProvider} from './context'
+
 
 function Withdraw(){
   const [show, setShow]     = React.useState(true);
