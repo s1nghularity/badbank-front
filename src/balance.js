@@ -6,20 +6,21 @@ function Balance(){
   const [status, setStatus] = React.useState('');  
 
   return (
-    <UserProvider
+    <UserProvider 
       bgcolor="info"
       header="Balance"
       status={status}
       body={show ?
-        <BalanceForm setShow={setShow} setStatus={setStatus}/> :
-        <BalanceMsg setShow={setShow} setStatus={setStatus}/>}
+        <BalanceForm setShow={setShow} setStatus={setStatus} style={{ width: '35rem' }}/> :
+        <BalanceMsg setShow={setShow} setStatus={setStatus} style={{ width: '35rem' }}/>}
     />
   )
 
 }
 
 function BalanceMsg(props){
-  return(<>
+  return(
+  <>
     <h5>Success</h5>
     <button type="submit" 
       className="btn btn-light" 
@@ -38,7 +39,7 @@ function BalanceForm(props){
   const [user, setUser] = React.useState('')
 
   function handle(){
-    fetch(`/account/findOne/${email}`)
+    fetch(`/alldata/${email}`)
     .then(response => response.text())
     .then(text => {
         try {
@@ -54,22 +55,23 @@ function BalanceForm(props){
     });
   }
 
-  return (<>
+  return (
+    <form>
+      Email<br/>
+      <input type="input" 
+        className="form-control" 
+        placeholder="Enter email" 
+        value={email} 
+        onChange={e => setEmail(e.currentTarget.value)}/><br/>
 
-    Email<br/>
-    <input type="input" 
-      className="form-control" 
-      placeholder="Enter email" 
-      value={email} 
-      onChange={e => setEmail(e.currentTarget.value)}/><br/>
+      <button type="submit" 
+        className="btn btn-light" 
+        onClick={handle}>
+          Check Balance
+      </button>
 
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={handle}>
-        Check Balance
-    </button>
-
-  </>);
+    </form>
+  );
 }
 
 export default Balance;

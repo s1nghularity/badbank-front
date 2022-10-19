@@ -2,15 +2,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-import NavBar from './navbar';
-import Home from './home';
-import CreateAccount from './createaccount';
-import Login from './login';
-import Deposit from './deposit';
-import Withdraw from './withdraw'
-import Balance from './balance'
-import AllData from './alldata'
-import ErrorPage from './error'
+import NavBar           from './navbar';
+import Home             from './home';
+import CreateAccount    from './createaccount';
+import Login            from './login';
+import Deposit          from './deposit';
+import Withdraw         from './withdraw'
+import Balance          from './balance'
+import AllData          from './alldata'
+import ErrorPage        from './error'
 import { UserProvider } from "./context";
 
 
@@ -18,18 +18,18 @@ export default function App() {
   
   return (
     <div className="App">     
-      <Router>
+      <Router>  
       <UserProvider> 
         <NavBar />
         
           <Routes>
-            <Route path = "/"            index element= { <Home /> }       />
-            <Route path ="#/createaccount/"     element= { <CreateAccount /> }  />
-            <Route path ="#/login/"             element= { <Login /> }          />
-            <Route path ="#/deposit/"           element= { <Deposit /> }        />
-            <Route path ="#/withdraw/"          element= { <Withdraw /> }       />
-            <Route path ="#/balance/"           element= { <Balance /> }        />
-            <Route path ="#/alldata/"           element= { <AllData /> }        />
+            <Route path = "/"            index element= { <Home /> }           />
+            <Route path ="/createaccount/"     element= { <CreateAccount /> }  />
+            <Route path ="/login/"             element= { <Login /> }          />
+            <Route path ="/deposit/"           element= { <Deposit /> }        />
+            <Route path ="/withdraw/"          element= { <Withdraw /> }       />
+            <Route path ="/balance/"           element= { <Balance /> }        />
+            <Route path ="/alldata/"           element= { <AllData /> }        />
             <Route path ="*"                   element= { <ErrorPage/> }       />
           </Routes>
           

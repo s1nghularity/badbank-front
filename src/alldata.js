@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useUserContext, UserContext } from "./context";
-import { Card, CardBody, CardHeader, CardTitle} from "reactstrap";
+import { Card, CardBody, CardHeader} from "reactstrap";
 
 function AllData() {
   return (
@@ -18,18 +18,18 @@ function UserAccountData() {
     <div>
       All User Account Data
       <br/>
-        {user.map((ctx, i) => (
+        {user.map((user, i) => (
             <>
-            <Card key={i} border = "primary" style={{ width: '35rem' }}>
+            <Card key={i} className = "alldatacard" style={{ width: '35rem' }}>
             <CardHeader>
-            {ctx.name}
+            {user.name}
             </CardHeader>
             <CardBody>      
-            Email: {ctx.email}
+            Email:      {user.email}
             <br/>
-            Balance: ${ctx.balance}
+            Balance: $  {user.balance}
             <br/>
-            Password:  {ctx.password}
+            Password:   {user.password}
             </CardBody>
             </Card>
             </>        
