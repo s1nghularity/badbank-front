@@ -11,17 +11,21 @@ function CreateAccount() {
 
 function Account() {
     const { user, setUser } = useUserContext();
-
+    let nexdId = 1;
     function handle(data) {
-            setUser([
-            ...user,
-            {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            balance: 100,
-            },
-        ]);
+        setUser(
+            [
+                ...user,
+                {
+                    id: nexdId++,
+                    name: data.name,
+                    email: data.email,
+                    password: data.password,
+                    balance: 100,
+                },
+            ]
+        );
+
         return true;
     }
 
