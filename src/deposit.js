@@ -1,55 +1,80 @@
 import React, { useContext, useState } from 'react'
 import {UserProvider, useUserContext, UserContext} from './context'
-import Transaction from './transaction';
+
 import { Card } from 'reactstrap';
 
-function Deposit(){
+function Deposit( ){
+  const context = useContext(UserContext);
   const { user, setUser } = useUserContext(UserContext);
   const [input, setInput] = useState(0);
-  const [total, setTotal] = useState(user.balance);
-  const [success, setSuccess] = useState(false);
+  const [total, setTotal] = useState(context.balance);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-
-  function handleChange(e) {
-    setError(false);
-    setSuccess(false);
-    let value = e.target.value;
-    setInput(value);
+  
+  function clearError(){
+    setError('');
   }
 
-  function handleDeposit(e) {
-    const regexE = /\S@\S/;
-    const regexN = /^[1-9]\d*$/g
-
-    if ((!regexE.test(input) || input.length < 3) 
-        && (input > 0 && regexN.test(input))) 
-        {user.balance = user.balance + input; 
-        setSuccess(true);}
-    
-    else {setError(true);
-    
-        if (input < 0)
-          {alert = "Must be a number greater than 0";} 
-        else if (regexN.test(input))
-          {alert = "Must be a number greater than 0";}
-        }
-    
-    setTotal(user.balance);
+  function clearForm(){
+    setInput(0);
   }
 
-return(
-  <div>
-  <Transaction
-    type="Deposit"
-    handleChange={handleChange}
-    handleTransact={handleDeposit}
-    balance={total}
-    error ={error}
-    success={success}
-  />
-  </div>
+  function handleSubmit(event) {
+    event.preventDefault();
+    let newTotal = total + input;
+    if (!error && input > 0) {
+      setSuccess('Deposit Successful');
+      setTotal(newTotal);
+      setUser({...user, balance: newTotal});
+      updateAccountBalance()};
+  }
+
+  function handleChange(event) {
+    const input = event.target.value;
+    if (input < 0 || isNaN(input)) {
+      setError('Positive numerical values only');
+    } else {
+      clearError();
+      setInput(Number(input));
+      
+    }
+  }
+
+  function updateAccountBalance() {
+    let newBalance = user.balance + input;
+    setUser({ ...user, balance: newBalance });
+   
+  }
+
+  
+  return (
+
+    <Card style={{ width: '35rem', margin: 'auto', marginTop: '5rem' }}>
+      <h2 style={{ textAlign: 'center' }}>Deposit</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="amount">Amount</label>
+          <input
+            type=""
+            className="form-control"
+            id="amount"
+            onChange={handleChange}
+          />
+          {error && <div className="alert alert-danger">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
+
+        </div>
+        
+        
+        <button disabled={!input} type="submit" className="btn btn-primary">
+          Deposit
+        </button>
+      </form>
+
+    </Card>
   );
 }
+
 
 export default Deposit;

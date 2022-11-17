@@ -23,7 +23,7 @@ function UserAccountData() {
             <>
             <Card key={i} className = "alldatacard" style={{ width: '35rem' }}>
             <CardHeader>
-            {user.name}
+            {user.id} {user.name}
             </CardHeader>
             <CardBody>      
             Email:      {user.email}
