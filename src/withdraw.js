@@ -7,6 +7,7 @@ function Withdraw( ){
   const { user, setUser } = useUserContext(UserContext);
   const [input, setInput] = useState('Enter deposit amount');
   const [total, setTotal] = useState(context.user[1].balance);
+  const [transactions, setTransactions] = useState(context.user[1].transactionHistory);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -39,6 +40,8 @@ function Withdraw( ){
       clearError(event);
       clearForm(event);
       setSuccess('Withrdrawal Successful');
+      setTransactions('Withdrawal', input);
+      updateTransactions(input);
       updateAccountBalance(newTotal)};
     if(input > total){
       setError('Insufficient funds')};
@@ -50,7 +53,15 @@ function Withdraw( ){
       {user.balance = newTotal && context.user.push(newTotal);}  
       return user;});
   }
-
+  function updateTransactions(type, input) {
+    let newTransaction = {
+      type: 'Withdrawal',
+      amount: input,
+      date: new Date().toLocaleString()
+    }
+    let newTransactions = [...transactions, newTransaction];
+    context.user[1].transactionHistory = newTransactions;
+  }
 
   
   return (

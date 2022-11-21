@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { useUserContext, UserContext } from "./context";
-import { Card, CardBody, CardHeader} from "reactstrap";
+import { Card, CardBody, CardFooter, CardHeader} from "reactstrap";
 import * as React from 'react'
-
+import updateTransactions from "./deposit";
 
 function AllData() {
   return (
@@ -16,6 +16,7 @@ function UserAccountData() {
   const { user, setUser } = useUserContext();
   const context = useContext(UserContext);
   const [total, setTotal] = useState(context.user[1].balance);
+  const [transactions, setTransactions] = useState(context.user[1].transactionHistory);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -35,7 +36,16 @@ function UserAccountData() {
             <br/>
             Password:   {user.password}
             <br/>
+            
+            <CardFooter>
+            Transactions: {user.transactionHistory.map((transaction, id) => (
+              <div key={id}>
+              {transaction.type} ${transaction.amount} {transaction.date}
+              </div>
+            ))}
+            </CardFooter>
             </CardBody>
+                        
             </Card>
             <br/>
           
@@ -43,6 +53,7 @@ function UserAccountData() {
         ))}
       <br/>
     </div>
+    
     </UserContext.Provider>
   );
 }

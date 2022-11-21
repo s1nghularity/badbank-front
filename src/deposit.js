@@ -34,20 +34,25 @@ function Deposit( ){
   function handleSubmit(event) {
     event.preventDefault();
     let newTotal = total + input;
+    
     if (!error && input > 0) {
       setTotal(user[1].balance = newTotal);
       clearError(event);
       clearForm(event);
       setSuccess('Deposit Successful');
       setTransactions('Deposit', input)};
+      updateTransactions(input);
   }
 
-  function Transactions(type, input) {
-    let transactionHistory = transactions;
-    context.users.find(user => {
-      if (user.id === context.user.id) 
-      {user.transactionHistory = !error && context.user.push({type: 'deposit', amount: input})}  
-      return user;});
+//log successful deposit to alldata.js file
+  function updateTransactions(type, input) {
+    let newTransaction = {
+      type: 'Deposit',
+      amount: input,
+      date: new Date().toLocaleString()
+    }
+    let newTransactions = [...transactions, newTransaction];
+    context.user[1].transactionHistory = newTransactions;
   }
 
   

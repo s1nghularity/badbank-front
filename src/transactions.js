@@ -1,13 +1,12 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { useUserContext, UserContext} from './context'
+import React, { useContext, useState } from 'react'
+import { UserContext} from './context'
 import { Card, CardHeader, Col, Table } from 'reactstrap';
-import updateTransactions from './transactions'
-  //track deposit and withdrawal amounts from deposit and withdrawal components
 
 function Transactions(props) {
   const context = useContext(UserContext);
   const [user, setUser] = useState(context.user[1].transactionHistory);
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState(context.user[1].transactionHistory);
+  
   const renderTable = () => {
     return context.transactionHistory.map((transaction, index) => {
       const { ts, type, input} = transaction;
@@ -26,7 +25,6 @@ function Transactions(props) {
       <div className="container">
       <div className="row">
         <div className="col-12">
-        <UserContext.Provider value={{ user, setUser }}>
 
           <Card>
             <CardHeader>
@@ -50,7 +48,7 @@ function Transactions(props) {
               </tbody>
             </Table>
           </Card>
-          </UserContext.Provider>
+
    
         </div>
       </div>

@@ -13,14 +13,18 @@ export const UserProvider = ({ children }) => {
         name: "abel", 
         email: "abel@mit.edu", 
         password: "secret", 
-        balance: 100,},
+        balance: 100,
+        transactionHistory: [ {type: "deposit", amount: 100 }],
+      },
 
       { id: 1,
         name: "Erika", 
         email: "erikamal@usc.edu", 
         password: "markiv", 
-        balance: 101,},
-    ]
+        balance: 101,
+        transactionHistory: [ {type: '', amount: '' }],
+      },
+    ] 
   );
 
   return (
