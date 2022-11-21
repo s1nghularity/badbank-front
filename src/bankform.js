@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Card,
   CardBody,
@@ -6,19 +6,19 @@ import {
   CardSubtitle,
   Button,
   NavItem,
-} from "reactstrap";
-import { Link } from "react-router-dom";
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 let disabledButton = {
-  backgroundColor: "#e2e2e2",
-  cursor: "not-allowed",
+  backgroundColor: '#e2e2e2',
+  cursor: 'not-allowed',
 };
 
-//VALIDATION 
+//VALIDATION
 function validateName(name) {
   let regex = /^[a-zA-Z\s]*$/g;
   if (name.length < 2 || regex.test(name) === false) {
-    console.log("bad name");
+    console.log('bad name');
     return false;
   } else {
     return true;
@@ -28,7 +28,7 @@ function validateName(name) {
 function validateEmail(email) {
   const regex2 = /\S@\S/;
   if (!regex2.test(email) || email.length < 3) {
-    console.log("bad email");
+    console.log('bad email');
     return false;
   } else {
     return true;
@@ -37,32 +37,32 @@ function validateEmail(email) {
 
 function validatePassword(password) {
   if (password.length < 8) {
-    console.log("bad pw");
+    console.log('bad pw');
     return false;
   } else {
     return true;
   }
 }
-//END VALIDATION 
+//END VALIDATION
 
-//SIGN-UP COMPONENT TO BE PASSED TO CREATEACCOUNT 
+//SIGN-UP COMPONENT TO BE PASSED TO CREATEACCOUNT
 
 function BankForm({ bgcolor, label, handle, successButton }) {
   const [show, setShow] = React.useState(true);
-  const [status, setStatus] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [status, setStatus] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [isError, setIsError] = React.useState(true);
   const [errors, setError] = React.useState({
-    nameError: "",
-    emailError: "",
-    passwordError: "",
+    nameError: '',
+    emailError: '',
+    passwordError: '',
   });
   const [buttonDisabled, setButtonDisabled] = React.useState(true);
 
   function clearError() {
-    setError({ nameError: "", emailError: "", passwordError: "" });
+    setError({ nameError: '', emailError: '', passwordError: '' });
   }
 
   function handleCreate() {
@@ -71,37 +71,37 @@ function BankForm({ bgcolor, label, handle, successButton }) {
     const isValidPassword = validatePassword(password);
 
     if (isValidName && isValidEmail && isValidPassword) {
-      console.log("conditions met, isError is false");
+      console.log('conditions met, isError is false');
       setIsError(false);
       handle({ name, email, password });
       setShow(false);
     } else {
       setIsError(true);
       setError({
-        nameError: isValidName ? "" : "invalid name",
-        emailError: isValidEmail ? "" : "invalid email",
-        passwordError: isValidPassword ? "" : "invalid password",
+        nameError: isValidName ? '' : 'invalid name',
+        emailError: isValidEmail ? '' : 'invalid email',
+        passwordError: isValidPassword ? '' : 'invalid password',
       });
     }
   }
 
   function clearForm() {
-    setName("");
-    setEmail("");
-    setPassword("");
+    setName('');
+    setEmail('');
+    setPassword('');
     setShow(true);
   }
   return (
     <div>
       <Card
         style={{
-          width: "28rem",
+          width: '28rem',
         }}
       >
         <CardBody>
-          <CardTitle tag="h5">{label}</CardTitle>
+          <CardTitle tag='h5'>{label}</CardTitle>
           {show ? (
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
+            <CardSubtitle className='mb-2 text-muted' tag='h6'>
               Please fill out the form below
             </CardSubtitle>
           ) : (
@@ -109,15 +109,14 @@ function BankForm({ bgcolor, label, handle, successButton }) {
           )}
           {show ? (
             <form>
-
-              <div className="mb-3">
+              <div className='mb-3'>
                 Name
                 <br />
                 <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  placeholder="Enter Name"
+                  type='text'
+                  className='form-control'
+                  id='name'
+                  placeholder='Enter Name'
                   value={name}
                   onChange={(e) => {
                     setName(e.currentTarget.value);
@@ -125,14 +124,14 @@ function BankForm({ bgcolor, label, handle, successButton }) {
                     clearError();
                   }}
                 />
-                <div style={{ color: "red" }}>{errors.nameError}</div>
+                <div style={{ color: 'red' }}>{errors.nameError}</div>
                 Email Address
                 <br />
                 <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Enter Email"
+                  type='email'
+                  className='form-control'
+                  id='email'
+                  placeholder='Enter Email'
                   value={email}
                   onChange={(e) => {
                     setEmail(e.currentTarget.value);
@@ -140,13 +139,13 @@ function BankForm({ bgcolor, label, handle, successButton }) {
                     clearError();
                   }}
                 />
-                <div style={{ color: "red" }}>{errors.emailError}</div>
+                <div style={{ color: 'red' }}>{errors.emailError}</div>
                 Password <br />
                 <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Enter Password"
+                  type='password'
+                  className='form-control'
+                  id='password'
+                  placeholder='Enter Password'
                   value={password}
                   onChange={(e) => {
                     setPassword(e.currentTarget.value);
@@ -154,9 +153,8 @@ function BankForm({ bgcolor, label, handle, successButton }) {
                     clearError();
                   }}
                 />
-                <div style={{ color: "red" }}>{errors.passwordError}</div>
+                <div style={{ color: 'red' }}>{errors.passwordError}</div>
               </div>
-
             </form>
           ) : (
             <div>
@@ -170,8 +168,8 @@ function BankForm({ bgcolor, label, handle, successButton }) {
           )}
           {show && buttonDisabled ? (
             <Button
-              className="btn btn-dark"
-              type="submit"
+              className='btn btn-dark'
+              type='submit'
               onClick={handleCreate}
               style={disabledButton}
             >
@@ -179,8 +177,8 @@ function BankForm({ bgcolor, label, handle, successButton }) {
             </Button>
           ) : show && !buttonDisabled ? (
             <Button
-              type="submit"
-              className="btn btn-dark"
+              type='submit'
+              className='btn btn-dark'
               onClick={handleCreate}
             >
               {label}
@@ -188,20 +186,22 @@ function BankForm({ bgcolor, label, handle, successButton }) {
           ) : (
             <div>
               <Button
-                type="submit"
-                className="btn btn-dark"
+                type='submit'
+                className='btn btn-dark'
                 onClick={clearForm}
               >
                 {successButton}
               </Button>
               <Button>
                 <NavItem
+                   
                   tag={Link}
-                  to="/Login"
+                  to='/Login'
                   style={{
-                    textDecoration: "none",
-                    color: "white",
-                    margin: "2px",
+                    textDecoration: 'none',
+                    color: 'white',
+                    margin: '2px',
+                    disabled: 'true',
                   }}
                 >
                   Log In

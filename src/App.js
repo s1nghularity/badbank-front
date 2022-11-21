@@ -9,9 +9,8 @@ import CreateAccount    from './createaccount';
 import Login            from './login';
 import Deposit          from './deposit';
 import Withdraw         from './withdraw';
-import Transactions from './transactions';
 import AllData          from './alldata'
-import ErrorPage        from './error'
+// import ErrorPage        from './error'
 import { UserProvider } from "./context";
 
 
@@ -24,19 +23,19 @@ export default function App() {
         <NavBar />
         
           <Routes>
-            <Route path = "/"            index element= { <Home /> }           />
+            <Route path = "/*"            index element= { <Home /> }           />
             <Route path ="/createaccount/"     element= { <CreateAccount /> }  />
             <Route path ="/login/"             element= { <Login /> }          />
             <Route path ="/deposit/"           element= { <Deposit /> }        />
-            <Route path ="/withdraw/"          element= { <Withdraw /> }       />
-          
-            <Route path ="/transactions/"      element= { <Transactions /> }   />
+            <Route path ="/withdraw/"          element= { <Withdraw /> }       />          
             <Route path ="/alldata/"           element= { <AllData /> }        />
-            <Route path ="*"                   element= { <ErrorPage/> }       />
+            {/* <Route path ="*"                   element= { <ErrorPage/> }       /> */}
           </Routes>
           
         </UserProvider>
       </Router>
+
     </div>
+
   );
 }

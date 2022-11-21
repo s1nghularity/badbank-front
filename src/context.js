@@ -1,31 +1,28 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 export const UserContext = createContext();
 export const useUserContext = () => useContext(UserContext);
 
-
-
 export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState([
+    {
+      id: 0,
+      name: 'abel',
+      email: 'abel@mit.edu',
+      password: 'secret',
+      balance: 100,
+      transactionHistory: [{ type: 'deposit', amount: 100 }],
+    },
 
-  const [user, setUser] = useState(
-    [
-      { id: 0,
-        name: "abel", 
-        email: "abel@mit.edu", 
-        password: "secret", 
-        balance: 100,
-        transactionHistory: [ {type: "deposit", amount: 100 }],
-      },
-
-      { id: 1,
-        name: "Erika", 
-        email: "erikamal@usc.edu", 
-        password: "markiv", 
-        balance: 101,
-        transactionHistory: [ {type: '', amount: '' }],
-      },
-    ] 
-  );
+    {
+      id: 1,
+      name: 'Erika',
+      email: 'erikamal@usc.edu',
+      password: 'markiv',
+      balance: 101,
+      transactionHistory: [{ type: '', amount: '' }],
+    },
+  ]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -33,10 +30,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-
-
-
-
-
-
