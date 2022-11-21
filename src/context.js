@@ -13,15 +13,13 @@ export const UserProvider = ({ children }) => {
         name: "abel", 
         email: "abel@mit.edu", 
         password: "secret", 
-        balance: 100,
-        transactionHistory: [{}]},
+        balance: 100,},
 
       { id: 1,
         name: "Erika", 
         email: "erikamal@usc.edu", 
         password: "markiv", 
-        balance: 101,
-        transactionHistory: [{}]},
+        balance: 101,},
     ]
   );
 

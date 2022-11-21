@@ -7,6 +7,7 @@ function Deposit( ){
   const { user, setUser } = useUserContext(UserContext);
   const [input, setInput] = useState('Enter deposit amount');
   const [total, setTotal] = useState(context.user[1].balance);
+  const [transactions, setTransactions] = useState(context.user[1].transactionHistory);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -38,18 +39,11 @@ function Deposit( ){
       clearError(event);
       clearForm(event);
       setSuccess('Deposit Successful');
-      updateAccountBalance(newTotal)
-      updateTransactions('Deposit', input)};
+      setTransactions('Deposit', input)};
   }
 
-  function updateAccountBalance(newTotal) {
-    context.users.find(user => {
-      if (user.id === context.user.id) 
-      {user.balance = newTotal && context.user.push(newTotal);}  
-      return user;});
-  }
-
-  function updateTransactions(type, amount) {
+  function Transactions(type, input) {
+    let transactionHistory = transactions;
     context.users.find(user => {
       if (user.id === context.user.id) 
       {user.transactionHistory = !error && context.user.push({type: 'deposit', amount: input})}  

@@ -40,13 +40,14 @@ const toggle = () => setIsOpen(!isOpen);
                 </NavLink>
             </NavItem>
 
-            <NavItem>
+            {/* <NavItem>
                 <NavLink tag={Link} to='/login'>
                 Login
                 </NavLink>
-            </NavItem>
+            </NavItem> */}
 
             <NavItem>
+                
                 <NavLink tag={Link} to='/deposit'>
                 Deposit
                 </NavLink>
@@ -58,18 +59,13 @@ const toggle = () => setIsOpen(!isOpen);
                 </NavLink>
             </NavItem>
 
-            <NavItem>
-                <NavLink tag={Link} to='/balance'>
-                Balance
-                </NavLink>
-            </NavItem>
 
-            <NavItem>
+            {/* <NavItem>
                 <NavLink tag={Link} to='/transactions'>
                 Transactions
                 </NavLink>
             </NavItem>
-            
+             */}
             <NavItem>
                 <NavLink tag={Link} to='/alldata'>
                 All Data

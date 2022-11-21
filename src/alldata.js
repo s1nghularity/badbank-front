@@ -3,6 +3,7 @@ import { useUserContext, UserContext } from "./context";
 import { Card, CardBody, CardHeader} from "reactstrap";
 import * as React from 'react'
 
+
 function AllData() {
   return (
     <div>
@@ -33,9 +34,11 @@ function UserAccountData() {
             Balance: $  {user.balance}
             <br/>
             Password:   {user.password}
+            <br/>
             </CardBody>
             </Card>
             <br/>
+          
             </>        
         ))}
       <br/>
