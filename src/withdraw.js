@@ -1,81 +1,87 @@
-import React from 'react'
-import {UserProvider} from './context'
+import React, { useContext, useState } from 'react'
+import { useUserContext, UserContext} from './context'
+import { Card, CardHeader } from 'reactstrap';
 
+function Withdraw( ){
+  const context = useContext(UserContext);
+  const { user, setUser } = useUserContext(UserContext);
+  const [input, setInput] = useState('Enter deposit amount');
+  const [total, setTotal] = useState(context.user[1].balance);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-function Withdraw(){
-  const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');  
+  
+  function clearError(){
+    setError(false);
+  }
 
-  return (
-    <UserProvider
-      bgcolor="success"
-      header="Withdraw"
-      status={status}
-      body={show ? 
-        <WithdrawForm setShow={setShow} setStatus={setStatus}/> :
-        <WithdrawMsg setShow={setShow} setStatus={setStatus}/>}
-    />
-  )
-}
+  function clearForm(){
+    setInput('Enter deposit amount');
+  }
 
-function WithdrawMsg(props){
-  return(<>
-    <h5>Success</h5>
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={() => {
-        props.setShow(true);
-        props.setStatus('');
-      }}>
-        Withdraw again
-    </button>
-  </>);
-}
+  function handleChange(event) {
+    const input = event.target.value;
+    if (input < 0 || isNaN(input)) {
+      setError('Positive numerical values only');
+    } else {
+      clearError(event);
+      setSuccess(false)
+      setInput(Number(input)); 
+    }
 
-function WithdrawForm(props){
-  const [email, setEmail]   = React.useState('');
-  const [amount, setAmount] = React.useState('');
+  }
 
-  function handle(){
-    fetch(`/account/update/${email}/-${amount}`)
-    .then(response => response.text())
-    .then(text => {
-        try {
-            const data = JSON.parse(text);
-            props.setStatus(JSON.stringify(data.value));
-            props.setShow(false);
-            console.log('JSON:', data);
-        } catch(err) {
-            props.setStatus('Deposit failed')
-            console.log('err:', text);
-        }
-    });
+  function handleSubmit(event) {
+    event.preventDefault();
+    let newTotal = total - input;
+    if (!error && newTotal > 0) {
+      setTotal(user[1].balance = newTotal);
+      clearError(event);
+      clearForm(event);
+      setSuccess('Withrdrawal Successful');
+      updateAccountBalance(newTotal)};
+    if(input > total){
+      setError('Insufficient funds')};
+    }
+
+  function updateAccountBalance(newTotal) {
+    context.users.find(user => {
+      if (user.id === context.user.id) 
+      {user.balance = newTotal && context.user.push(newTotal);}  
+      return user;});
   }
 
 
-  return(<>
+  
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
 
-    Email<br/>
-    <input type="input" 
-      className="form-control" 
-      placeholder="Enter email" 
-      value={email} 
-      onChange={e => setEmail(e.currentTarget.value)}/><br/>
+    <Card style={{ width: '35rem', margin: 'auto', marginTop: '5rem' }}>
+    <CardHeader style={{ width: '35rem' }}>Erika's Account Balance: ${ total }</CardHeader>  
+      <h2 style={{ textAlign: 'center' }}>Withdrawal</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Amount</label>
+          <input
+            type=""
+            className="form-control"
+            id="amount"
+            onChange={handleChange}
+          />
+          {error && <div className="alert alert-danger">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
 
-    Amount<br/>
-    <input type="number" 
-      className="form-control" 
-      placeholder="Enter amount" 
-      value={amount} 
-      onChange={e => setAmount(e.currentTarget.value)}/><br/>
+        </div>
+        
+        
+        <button disabled={!input} type="submit" className="btn btn-primary">
+          Withdraw
+        </button>
+      </form>
+    </Card>
 
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={handle}>
-        Withdraw
-    </button>
-
-  </>);
+    </UserContext.Provider>
+  );
 }
 
-export default Withdraw; 
+export default Withdraw;

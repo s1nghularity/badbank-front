@@ -13,13 +13,15 @@ export const UserProvider = ({ children }) => {
         name: "abel", 
         email: "abel@mit.edu", 
         password: "secret", 
-        balance: 100 },
+        balance: 100,
+        transactionHistory: [{}]},
 
       { id: 1,
         name: "Erika", 
         email: "erikamal@usc.edu", 
         password: "markiv", 
-        balance: 101 },
+        balance: 101,
+        transactionHistory: [{}]},
     ]
   );
 
@@ -30,23 +32,6 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-
-// function UserProvider({ children }) {
-//   const [user, setUser] = useState();
-
-//   useEffect(() => {
-//     userService.allDetails()
-//       .then(({ data }) => setUser(data));
-//   }, []);
-
-//   return !user ? null : (
-//     <UserContext.Provider value={user}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// }
-
-// export default UserProvider;
 
 
 

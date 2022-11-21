@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { useUserContext, UserContext } from "./context";
 import { Card, CardBody, CardHeader} from "reactstrap";
 import * as React from 'react'
-import Deposit from "./deposit";
 
 function AllData() {
   return (
@@ -20,7 +19,7 @@ function UserAccountData() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
     <div>
-     <h3> All User Account Data </h3>
+    <h3> All User Account Data </h3>
       <br/>
         {user.map((user, id) => (
             <>

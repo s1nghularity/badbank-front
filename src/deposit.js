@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
-import {UserProvider, useUserContext, UserContext} from './context'
+import React, { useEffect, useContext, useState } from 'react'
+import { useUserContext, UserContext} from './context'
 import { Card, CardHeader } from 'reactstrap';
 
 function Deposit( ){
@@ -19,6 +19,17 @@ function Deposit( ){
     setInput('Enter deposit amount');
   }
 
+  function handleChange(event) {
+    const input = event.target.value;
+    if (input < 0 || isNaN(input)) {
+      setError('Positive numerical values only');
+    } else {
+      clearError(event);
+      setSuccess(false)
+      setInput(Number(input)); 
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     let newTotal = total + input;
@@ -27,22 +38,10 @@ function Deposit( ){
       clearError(event);
       clearForm(event);
       setSuccess('Deposit Successful');
-      updateAccountBalance(newTotal)};
+      updateAccountBalance(newTotal)
+      updateTransactions('Deposit', input)};
   }
 
-  function handleChange(event) {
-    const input = event.target.value;
-    if (input < 0 || isNaN(input)) {
-      setError('Positive numerical values only');
-    } else {
-      clearError(event);
-      setSuccess(false)
-      setInput(Number(input));
-      
-    }
-  }
-
-  // connect to alldata.js to update user balance
   function updateAccountBalance(newTotal) {
     context.users.find(user => {
       if (user.id === context.user.id) 
@@ -50,6 +49,12 @@ function Deposit( ){
       return user;});
   }
 
+  function updateTransactions(type, amount) {
+    context.users.find(user => {
+      if (user.id === context.user.id) 
+      {user.transactionHistory = !error && context.user.push({type: 'deposit', amount: input})}  
+      return user;});
+  }
 
   
   return (

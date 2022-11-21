@@ -10,6 +10,7 @@ import Login            from './login';
 import Deposit          from './deposit';
 import Withdraw         from './withdraw'
 import Balance          from './balance'
+import Transactions from './transactions';
 import AllData          from './alldata'
 import ErrorPage        from './error'
 import { UserProvider } from "./context";
@@ -30,6 +31,7 @@ export default function App() {
             <Route path ="/deposit/"           element= { <Deposit /> }        />
             <Route path ="/withdraw/"          element= { <Withdraw /> }       />
             <Route path ="/balance/"           element= { <Balance /> }        />
+            <Route path ="/transactions/"      element= { <Transactions /> }   />
             <Route path ="/alldata/"           element= { <AllData /> }        />
             <Route path ="*"                   element= { <ErrorPage/> }       />
           </Routes>

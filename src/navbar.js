@@ -65,6 +65,12 @@ const toggle = () => setIsOpen(!isOpen);
             </NavItem>
 
             <NavItem>
+                <NavLink tag={Link} to='/transactions'>
+                Transactions
+                </NavLink>
+            </NavItem>
+            
+            <NavItem>
                 <NavLink tag={Link} to='/alldata'>
                 All Data
                 </NavLink>
