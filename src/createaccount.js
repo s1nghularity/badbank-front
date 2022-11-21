@@ -13,13 +13,13 @@ function CreateAccount() {
 
 function Account() {
     const { user, setUser } = useUserContext();
-    let nexdId = 1;
+    let nextId = 1;
     function handle(data) {
         setUser(
             [
                 ...user,
                 {
-                    id: nexdId++,
+                    id: nextId + 1,
                     name: data.name,
                     email: data.email,
                     password: data.password,

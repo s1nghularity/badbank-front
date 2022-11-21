@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useUserContext, UserContext } from "./context";
 import { Card, CardBody, CardHeader} from "reactstrap";
 import * as React from 'react'
+import Deposit from "./deposit";
 
 function AllData() {
   return (
@@ -14,15 +15,17 @@ function AllData() {
 function UserAccountData() {
   const { user, setUser } = useUserContext();
   const context = useContext(UserContext);
+  const [total, setTotal] = useState(context.user[1].balance);
 
   return (
+    <UserContext.Provider value={{ user, setUser }}>
     <div>
-      All User Account Data
+     <h3> All User Account Data </h3>
       <br/>
-        {user.map((user, i) => (
+        {user.map((user, id) => (
             <>
-            <Card key={i} className = "alldatacard" style={{ width: '35rem' }}>
-            <CardHeader>
+            <Card key={id} className = "alldatacard" style={{ width: '35rem' }}>
+            <CardHeader style={{ width: '35rem' }}>
             {user.id} {user.name}
             </CardHeader>
             <CardBody>      
@@ -33,10 +36,12 @@ function UserAccountData() {
             Password:   {user.password}
             </CardBody>
             </Card>
+            <br/>
             </>        
         ))}
       <br/>
     </div>
+    </UserContext.Provider>
   );
 }
 

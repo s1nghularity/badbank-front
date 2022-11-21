@@ -1,33 +1,33 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import {UserProvider, useUserContext, UserContext} from './context'
-
-import { Card } from 'reactstrap';
+import { Card, CardHeader } from 'reactstrap';
 
 function Deposit( ){
   const context = useContext(UserContext);
   const { user, setUser } = useUserContext(UserContext);
-  const [input, setInput] = useState(0);
-  const [total, setTotal] = useState(context.balance);
+  const [input, setInput] = useState('Enter deposit amount');
+  const [total, setTotal] = useState(context.user[1].balance);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
   
   function clearError(){
-    setError('');
+    setError(false);
   }
 
   function clearForm(){
-    setInput(0);
+    setInput('Enter deposit amount');
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     let newTotal = total + input;
     if (!error && input > 0) {
+      setTotal(user[1].balance = newTotal);
+      clearError(event);
+      clearForm(event);
       setSuccess('Deposit Successful');
-      setTotal(newTotal);
-      setUser({...user, balance: newTotal});
-      updateAccountBalance()};
+      updateAccountBalance(newTotal)};
   }
 
   function handleChange(event) {
@@ -35,26 +35,32 @@ function Deposit( ){
     if (input < 0 || isNaN(input)) {
       setError('Positive numerical values only');
     } else {
-      clearError();
+      clearError(event);
+      setSuccess(false)
       setInput(Number(input));
       
     }
   }
 
-  function updateAccountBalance() {
-    let newBalance = user.balance + input;
-    setUser({ ...user, balance: newBalance });
-   
+  // connect to alldata.js to update user balance
+  function updateAccountBalance(newTotal) {
+    context.users.find(user => {
+      if (user.id === context.user.id) 
+      {user.balance = newTotal && context.user.push(newTotal);}  
+      return user;});
   }
+
 
   
   return (
+    <UserContext.Provider value={{ user, setUser }}>
 
     <Card style={{ width: '35rem', margin: 'auto', marginTop: '5rem' }}>
+    <CardHeader style={{ width: '35rem' }}>Erika's Account Balance: ${ total }</CardHeader>  
       <h2 style={{ textAlign: 'center' }}>Deposit</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="amount">Amount</label>
+          <label>Amount</label>
           <input
             type=""
             className="form-control"
@@ -71,8 +77,9 @@ function Deposit( ){
           Deposit
         </button>
       </form>
-
     </Card>
+
+    </UserContext.Provider>
   );
 }
 
