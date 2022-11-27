@@ -12,12 +12,12 @@ Welcome to my front-end project for the MERN stack bootcamp with MITxPro.
 ## Lessons Learned
 
 - Set up a router for a single-page application
-- Created a sign-up form which used a seperate form componenet
-- Using context and state to 'save' user creation, withdrawals, and deposits. 
+- Created a sign-up form which used a seperate form component
+- Used context and state to 'save' user creation, withdrawals, and deposits. 
 
 The next steps for this app include login functionality and the ability to manipulate different user accounts. 
 
-> "A nickel ain't worth a dime anymore." - Yogi Berra
+> "A nickel ain't worth a dime anymore.":money_with_wings:Yogi Berra 
 
 ## License
 
